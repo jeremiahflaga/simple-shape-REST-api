@@ -10,7 +10,8 @@ namespace Shapes.Domain.Model
         }
 
         public ShapeId Id { get; }
-        public abstract string Type { get; }
+        public abstract ShapeType Type { get; }
         public abstract double Area { get; }
+        public abstract double Perimeter { get; }
     }
 }

@@ -8,6 +8,10 @@ namespace Shapes.Domain.Model
 {
     public class Rectangle : Shape
     {
+        public override ShapeType Type => ShapeType.Rectangle;
+        public override double Area =>  Length * Width;
+        public override double Perimeter => (Length * 2) +  (Width * 2);
+
         public Rectangle(ShapeId id, double length, double width)
             : base(id)
         {
@@ -17,8 +21,5 @@ namespace Shapes.Domain.Model
         
         public double Length { get; }
         public double Width { get; }
-        public double Perimeter => (Length * 2) +  (Width * 2);
-        public override double Area =>  Length * Width;
-        public override string Type => "rectangle";
     }
 }

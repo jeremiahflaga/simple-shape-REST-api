@@ -16,10 +16,26 @@ namespace Shapes.Domain.Services
         {
             this.shapeRepository = shapeRepository;
         }
+        
+        public void Add(ShapeId id, ShapeType type, dynamic data) 
+        {
+            shapeRepository.Add(ShapeFactory.CreateNew(id, type, data));
+        }        
+
+        public Shape Get(ShapeId id)
+        {
+            return shapeRepository.Get(id);
+        }
 
         public IEnumerable<Shape> GetAll() 
         {
             return shapeRepository.GetAll();
+        }
+
+        public void Update(Shape shape, dynamic data)
+        {
+            var updatedShape = ShapeFactory.CreateNew(shape.Id, shape.Type, data);
+            shapeRepository.Update(updatedShape);
         }
     }
 }

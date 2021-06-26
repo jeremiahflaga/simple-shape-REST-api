@@ -8,6 +8,10 @@ namespace Shapes.Domain.Model
 {
     public class Circle : Shape
     {
+        public override ShapeType Type => ShapeType.Circle;
+        public override double Area =>  Math.PI * Math.Pow(Radius, 2);
+        public override double Perimeter => Circumference;
+
         public Circle(ShapeId id, double radius)
             : base(id)
         {
@@ -16,7 +20,5 @@ namespace Shapes.Domain.Model
         
         public double Radius { get; }
         public double Circumference => 2 * Math.PI * Radius;
-        public override double Area =>  Math.PI * Math.Pow(Radius, 2);
-        public override string Type => "circle";
     }
 }

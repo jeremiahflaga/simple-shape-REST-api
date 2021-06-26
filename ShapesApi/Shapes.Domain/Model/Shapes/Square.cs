@@ -8,6 +8,10 @@ namespace Shapes.Domain.Model
 {
     public class Square : Shape
     {
+        public override ShapeType Type => ShapeType.Square;
+        public override double Area =>  Side * Side;
+        public override double Perimeter => Side * 4;
+
         public Square(ShapeId id, double side)
             : base(id)
         {
@@ -15,8 +19,5 @@ namespace Shapes.Domain.Model
         }
         
         public double Side { get; }
-        public double Perimeter => Side * 4;
-        public override double Area =>  Side * Side;
-        public override string Type => "square";
     }
 }

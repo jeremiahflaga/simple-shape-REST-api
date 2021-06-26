@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shapes.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace Shapes.Domain.Interfaces
 {
     public interface IShapeRepository
     {
-        IEnumerable<Model.Shape> GetAll();
+        void Add(Shape shape);
+        Shape Get(ShapeId id);
+        IEnumerable<Shape> GetAll();
+        void Update(Shape shape);
     }
 }

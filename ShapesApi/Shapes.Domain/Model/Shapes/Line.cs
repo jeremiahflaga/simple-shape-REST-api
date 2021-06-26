@@ -8,6 +8,10 @@ namespace Shapes.Domain.Model
 {
     public class Line : Shape
     {
+        public override ShapeType Type => ShapeType.Line;
+        public override double Area => Length;
+        public override double Perimeter => Length;
+
         public Line(ShapeId id, double length)
             : base(id)
         {
@@ -15,7 +19,5 @@ namespace Shapes.Domain.Model
         }
         
         public double Length { get; }
-        public override double Area => Length;
-        public override string Type => "line";
     }
 }

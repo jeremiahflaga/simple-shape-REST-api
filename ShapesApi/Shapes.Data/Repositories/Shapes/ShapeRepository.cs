@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Dynamic;
+using Shapes.Domain.Model;
 
 namespace Shapes.Data.Repositories
 {
@@ -16,15 +17,40 @@ namespace Shapes.Data.Repositories
 
         static ShapeRepository()
         {
-            var circle1 = new ShapeDataModel { Id = Guid.NewGuid(), Type = "circle" };
-            circle1.Data.Radius = 3;
-            shapesDictionary.TryAdd(circle1.Id, circle1);
+            var line1 = new Line(new ShapeId(), 3);
+            shapesDictionary.TryAdd(line1.Id.Value, ShapeDataModelFactory.CreateFrom(line1));
+            var circle1 = new Circle(new ShapeId(), 4);
+            shapesDictionary.TryAdd(circle1.Id.Value, ShapeDataModelFactory.CreateFrom(circle1));            
+            var square1 = new Square(new ShapeId(), 5);
+            shapesDictionary.TryAdd(square1.Id.Value, ShapeDataModelFactory.CreateFrom(square1));            
+            var rectangle1 = new Rectangle(new ShapeId(), 6, 7);
+            shapesDictionary.TryAdd(rectangle1.Id.Value, ShapeDataModelFactory.CreateFrom(rectangle1));
         }
 
-        public IEnumerable<Domain.Model.Shape> GetAll()
+        public void Add(Shape shape)
+        {
+            shapesDictionary.TryAdd(shape.Id.Value, ShapeDataModelFactory.CreateFrom(shape));
+        }
+
+        public Shape Get(ShapeId id)
+        {
+            if (shapesDictionary.ContainsKey(id.Value))
+                return shapesDictionary[id.Value].ConvertToShape();
+
+            return null;
+        }
+
+        public IEnumerable<Shape> GetAll()
         {
             return from dataModel in shapesDictionary.Values 
-                   select ShapeFactory.CreateFrom(dataModel);
+                   select dataModel.ConvertToShape();
+        }
+
+        public void Update(Shape shape)
+        {
+            if (shapesDictionary.ContainsKey(shape.Id.Value))
+                shapesDictionary[shape.Id.Value] = ShapeDataModelFactory.CreateFrom(shape);
+                
         }
     }
 }
