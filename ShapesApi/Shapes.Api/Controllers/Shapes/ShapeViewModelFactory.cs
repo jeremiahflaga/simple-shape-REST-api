@@ -14,8 +14,8 @@ namespace Shapes.Api.Controllers.Shapes
             var vm = new ShapeViewModel();         
             vm.Id = shape.Id.Value.ToString();
             vm.Type = shape.Type.Name.ToLower();
-            vm.Data.Area = shape.Area;
-            vm.Data.Perimeter = shape.Perimeter;
+            vm.Data.Area = shape.ComputeArea();
+            vm.Data.Perimeter = shape.ComputePerimeter();
             
             if (shape.GetType() == typeof(Line))
             {
@@ -26,7 +26,7 @@ namespace Shapes.Api.Controllers.Shapes
             {
                 var circle = (Circle)shape;
                 vm.Data.Radius = circle.Radius;
-                vm.Data.Circumference = circle.Circumference;
+                vm.Data.Circumference = circle.ComputeCircumference();
             }            
             else if (shape.GetType() == typeof(Square))
             {

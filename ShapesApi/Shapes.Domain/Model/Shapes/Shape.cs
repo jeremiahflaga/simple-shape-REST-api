@@ -11,7 +11,8 @@ namespace Shapes.Domain.Model.Shapes
 
         public ShapeId Id { get; }
         public abstract ShapeType Type { get; }
-        public abstract double Area { get; }
-        public abstract double Perimeter { get; }
+
+        public abstract double ComputeArea();
+        public abstract double ComputePerimeter();
     }
 }
