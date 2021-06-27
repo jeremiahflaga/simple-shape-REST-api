@@ -1,17 +1,18 @@
 ﻿using Shapes.Domain.Model;
+using Shapes.Domain.Model.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 
 namespace Shapes.Data.Repositories
 {
-    internal class ShapeDataModel
+    internal sealed class ShapeDataModel
     {
-        public Guid Id { get; set; }
-        public string Type { get; set; }
-        public dynamic Data { get; set; } = new ExpandoObject();
+        internal Guid Id { get; set; }
+        internal string Type { get; set; }
+        internal dynamic Data { get; set; } = new ExpandoObject();
         
-        internal Shape ConvertToShape()
+        internal Shape ConvertToShapeDomainModel()
         {
             if (Type == ShapeType.Line.Name)
                 return new Line(new ShapeId(Id), Data.Length);

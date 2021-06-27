@@ -60,6 +60,7 @@ namespace Shapes.Domain.Model
 
         private static T Parse<T, K>(K value, string description, Func<T, bool> predicate) where T : Enumeration
         {
+            var asdf = GetAll<T>();
             var matchingItem = GetAll<T>().FirstOrDefault(predicate);
 
             if (matchingItem == null)

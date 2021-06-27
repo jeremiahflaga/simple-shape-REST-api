@@ -1,4 +1,5 @@
 ﻿using Shapes.Domain.Model;
+using Shapes.Domain.Model.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

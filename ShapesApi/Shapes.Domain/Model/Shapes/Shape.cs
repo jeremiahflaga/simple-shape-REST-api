@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Shapes.Domain.Model
+namespace Shapes.Domain.Model.Shapes
 {
     public abstract class Shape
     {
-        internal Shape(ShapeId id)
+        protected Shape(ShapeId id)
         {
             Id = id;
         }

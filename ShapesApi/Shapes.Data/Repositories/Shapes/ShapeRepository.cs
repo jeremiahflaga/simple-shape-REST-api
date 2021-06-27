@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Dynamic;
 using Shapes.Domain.Model;
+using Shapes.Domain.Model.Shapes;
 
 namespace Shapes.Data.Repositories
 {
     public class ShapeRepository : IShapeRepository
     {
         //private static Guid circle1_id = Guid.NewGuid();
-        private static ConcurrentDictionary<Guid, ShapeDataModel> shapesDictionary = new ConcurrentDictionary<Guid, ShapeDataModel>() ;
+        private readonly static ConcurrentDictionary<Guid, ShapeDataModel> shapesDictionary = new ConcurrentDictionary<Guid, ShapeDataModel>() ;
 
         static ShapeRepository()
         {
@@ -35,7 +36,7 @@ namespace Shapes.Data.Repositories
         public Shape Get(ShapeId id)
         {
             if (shapesDictionary.ContainsKey(id.Value))
-                return shapesDictionary[id.Value].ConvertToShape();
+                return shapesDictionary[id.Value].ConvertToShapeDomainModel();
 
             return null;
         }
@@ -43,7 +44,7 @@ namespace Shapes.Data.Repositories
         public IEnumerable<Shape> GetAll()
         {
             return from dataModel in shapesDictionary.Values 
-                   select dataModel.ConvertToShape();
+                   select dataModel.ConvertToShapeDomainModel();
         }
 
         public void Update(Shape shape)

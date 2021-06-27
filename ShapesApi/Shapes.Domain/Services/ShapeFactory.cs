@@ -1,4 +1,5 @@
 ﻿using Shapes.Domain.Model;
+using Shapes.Domain.Model.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Domain.Services
 {
-    internal class ShapeFactory
+    internal sealed class ShapeFactory
     {
         internal static Shape CreateNew(ShapeId id, ShapeType type, dynamic data)
         {

@@ -5,6 +5,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Shapes.Domain.Model;
+using Shapes.Domain.Model.Shapes;
 using Shapes.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -45,12 +46,36 @@ namespace Shapes.Api.Controllers.Shapes
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] CreateShapeInputData inputData)
+        //public ActionResult Post([FromBody] CreateShapeInputData inputData)
+        //{
+        //    var data = ParseDynamicData(inputData.Data.ToString());
+
+        //    var id = new ShapeId();
+        //    shapeService.Add(id, Enumeration.FromDisplayName<ShapeType>(inputData.Type), data);
+        //    var newlyCreatedShape = shapeService.Get(id);
+
+        //    return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
+        //}
+        
+        [HttpPost]
+        public ActionResult PostCircle([FromBody] CreateCircleInputData inputData)
         {
-            var data = ParseDynamicData(inputData.Data.ToString());
+            //var data = ParseDynamicData(inputData.Data.ToString());
 
             var id = new ShapeId();
-            shapeService.Add(id, Enumeration.FromDisplayName<ShapeType>(inputData.Type), data);
+            //shapeService.Add(id, Enumeration.FromDisplayName<ShapeType>(inputData.Type), data);
+            var newlyCreatedShape = shapeService.Get(id);
+
+            return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
+        }
+        
+        [HttpPost]
+        public ActionResult PostLine([FromBody] CreateLineInputData inputData)
+        {
+            //var data = ParseDynamicData(inputData.Data.ToString());
+
+            var id = new ShapeId();
+            //shapeService.Add(id, Enumeration.FromDisplayName<ShapeType>(inputData.Type), data);
             var newlyCreatedShape = shapeService.Get(id);
 
             return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
