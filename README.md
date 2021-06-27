@@ -21,3 +21,27 @@ if possible without using any framework the app should
 
 2.	Save or Update the shape information (database not required)
 
+
+
+## Request payload for adding (POST) or updating (PUT) Shapes
+
+``` JSON
+{
+  "Type": "circle",
+  "Data": {
+    "Radius": 123
+  }
+}
+
+```
+
+``` JSON
+{
+  "Type": "rectangle",
+  "Data": {
+    "Length": 111,
+    "Width": 222
+  }
+}
+
+```
