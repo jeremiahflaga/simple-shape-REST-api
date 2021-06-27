@@ -55,16 +55,4 @@ namespace Shapes.Api.Controllers.Shapes
         //    return true;
         //}
     }
-    
-    public class CreateCircleInputData
-    {
-        public string Type { get; set; }
-        public double Radius { get; set; }
-    }
-    
-    public class CreateLineInputData
-    {
-        public string Type { get; set; }
-        public double Length { get; set; }
-    }
 }
