@@ -16,23 +16,23 @@ namespace Shapes.Data.Repositories
             if (shape.GetType() == typeof(Line))
             {
                 var line = (Line)shape;
-                shapeDataModel.Data.Length = line.Length;
+                shapeDataModel.Length = line.Length;
             }
             else if (shape.GetType() == typeof(Circle))
             {
                 var circle = (Circle)shape;
-                shapeDataModel.Data.Radius = circle.Radius;
+                shapeDataModel.Radius = circle.Radius;
             }             
             else if (shape.GetType() == typeof(Square))
             {
                 var square = (Square)shape;
-                shapeDataModel.Data.Side = square.Side;
+                shapeDataModel.Side = square.Side;
             }             
             else if (shape.GetType() == typeof(Rectangle))
             {
                 var rectangle = (Rectangle)shape;
-                shapeDataModel.Data.Length = rectangle.Length;
-                shapeDataModel.Data.Width = rectangle.Width;
+                shapeDataModel.Length = rectangle.Length;
+                shapeDataModel.Width = rectangle.Width;
             }
 
             return shapeDataModel;

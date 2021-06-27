@@ -13,7 +13,6 @@ namespace Shapes.Data.Repositories
 {
     public class ShapeRepository : IShapeRepository
     {
-        //private static Guid circle1_id = Guid.NewGuid();
         private readonly static ConcurrentDictionary<Guid, ShapeDataModel> shapesDictionary = new ConcurrentDictionary<Guid, ShapeDataModel>() ;
 
         static ShapeRepository()
