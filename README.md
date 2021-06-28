@@ -5,23 +5,7 @@
 
 Also, I'm not sure if my design for the shapes is correct because I do not know how this API is going to be used. The requirements statement is too short and it does not say how the API will be used by the client.
 
-
-
-
-## C# REST API
-
-if possible without using any framework the app should
-
-### Requirements
-
-1. return both area and perimeter (and other relevant info) of a shape 
-
-- You are to design your own payload
-- Have at least 3 shapes, but not limited to it (line included)
-
-2.	Save or Update the shape information (database not required)
-
-
+Also, I think this kind of app better suits the use of languages that are dynamically typed, such as JavaScript oor Python or Ruby.
 
 ## Request payload for adding (POST) or updating (PUT) Shapes
 
@@ -45,3 +29,22 @@ if possible without using any framework the app should
 }
 
 ```
+
+-----
+
+# Problem description
+
+## C# REST API
+
+if possible without using any framework the app should
+
+### Requirements
+
+1. return both area and perimeter (and other relevant info) of a shape 
+
+- You are to design your own payload
+- Have at least 3 shapes, but not limited to it (line included)
+
+2.	Save or Update the shape information (database not required)
+
+
