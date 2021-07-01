@@ -9,7 +9,7 @@ namespace Shapes.Api.Controllers.Shapes
 {
     public class ShapeViewModelFactory
     {
-        [Obsolete]
+        [Obsolete("Delete if not used anymore")]
         public static ShapeViewModel_OLD Create_OLD_From(Shape shape)
         {
             var vm = new ShapeViewModel_OLD();
@@ -55,7 +55,8 @@ namespace Shapes.Api.Controllers.Shapes
                     Id = shape.Id.Value.ToString(),
                     Type = shape.Type.Name.ToLower(),
                     Length = line.Length,
-                    Area = shape.ComputeArea()
+                    Area = shape.ComputeArea(),
+                    Perimeter = shape.ComputePerimeter()
                 };
             }
             else if (shape.GetType() == typeof(Circle))

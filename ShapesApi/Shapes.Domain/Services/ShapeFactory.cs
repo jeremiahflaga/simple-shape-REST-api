@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Shapes.Domain.Services
 {
+    [Obsolete("Delete if not used anymore")]
     internal sealed class ShapeFactory
     {
+        [Obsolete("Delete if not used anymore")]
         internal static Shape CreateNew(ShapeId id, ShapeType type, dynamic data)
         {
             if (type == ShapeType.Line)
