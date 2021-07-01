@@ -18,12 +18,6 @@ namespace Shapes.Domain.Services
             this.shapeRepository = shapeRepository;
         }
         
-        [Obsolete("Use dedicated Add method for each shape intead")]
-        public void Add(ShapeId id, ShapeType type, dynamic data) 
-        {
-            shapeRepository.Add(ShapeFactory.CreateNew(id, type, data));
-        }        
-        
         public ShapeId AddLine(double length)
         {
             var id = new ShapeId();
@@ -52,12 +46,6 @@ namespace Shapes.Domain.Services
             return id;
         }
 
-        [Obsolete("Use Get<T> intead")]
-        public Shape Get(ShapeId id)
-        {
-            return shapeRepository.Get(id);
-        }
-        
         public T Get<T>(ShapeId id) where T : Shape
         {
             return shapeRepository.Get<T>(id);
@@ -68,13 +56,6 @@ namespace Shapes.Domain.Services
             return shapeRepository.GetAll();
         }
         
-        [Obsolete("Use dedicated Update method for each shape intead")]
-        public void Update(Shape shape, dynamic data)
-        {
-            var updatedShape = ShapeFactory.CreateNew(shape.Id, shape.Type, data);
-            shapeRepository.Update(updatedShape);
-        }
-
         public void UpdateLine(ShapeId id, double length)
         {
             shapeRepository.Update(new Line(id, length));

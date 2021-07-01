@@ -17,20 +17,8 @@ namespace Shapes.Data.Repositories
         internal double Side { get; set; } // for square
         internal double Width { get; set; } // for rectangle
 
-        [Obsolete("Use ShapeFactory.CreateFrom<T> instead")]
-        internal Shape ConvertToShapeDomainModel()
-        {
-            if (Type == ShapeType.Line.Name)
-                return new Line(new ShapeId(Id), Length);
-            else if (Type == ShapeType.Circle.Name)
-                return new Circle(new ShapeId(Id), Radius);
-            else if (Type == ShapeType.Square.Name)
-                return new Square(new ShapeId(Id), Side);
-            else if (Type == ShapeType.Rectangle.Name)
-                return new Rectangle(new ShapeId(Id), Length, Width);
-            else
-                throw new Exception($"Cannot convert shape with Id '{Id}' and Type '{Type}'");
-        }
+
+
 
         
         //// Field representing JSON object of NoSQL database
@@ -49,6 +37,5 @@ namespace Shapes.Data.Repositories
         //    else
         //        throw new Exception($"Cannot convert shape with Id '{Id}' and Type '{Type}'");
         //}
-
     }
 }

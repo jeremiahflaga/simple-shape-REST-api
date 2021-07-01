@@ -28,16 +28,7 @@ namespace Shapes.Api.Controllers.Shapes
         }
 
         #region Get All
-        [Obsolete("Use GET new")]
         [HttpGet]
-        public IEnumerable<ShapeViewModel_OLD> GetAll_OLD()
-        {
-            var shapes = from shape in shapeService.GetAll()
-                         select ShapeViewModelFactory.Create_OLD_From(shape);
-            return shapes;
-        }
-
-        [HttpGet("new")]
         public IEnumerable<ShapeViewModel> GetAll()
         {
             var shapes = from shape in shapeService.GetAll()
@@ -46,18 +37,8 @@ namespace Shapes.Api.Controllers.Shapes
         }
         #endregion
 
+
         #region Get individual shape
-        [Obsolete("Use individual endpoints for each shape")]
-        [HttpGet("{id:Guid}")]
-        public ActionResult<ShapeViewModel> Get(Guid id)
-        {
-            var shape = shapeService.Get(new ShapeId(id));
-            if (shape == null)
-                return NotFound();
-
-            return Ok(ShapeViewModelFactory.CreateFrom(shape));
-        }
-
         [HttpGet("line/{id:Guid}")]
         public ActionResult<LineViewModel> GetLine(Guid id)
         {
@@ -101,25 +82,12 @@ namespace Shapes.Api.Controllers.Shapes
 
 
         #region Add Shape
-        [Obsolete("Use individual endpoints for each shape")]
-        [HttpPost]
-        public ActionResult Post([FromBody] CreateShapeInputData inputData)
-        {
-            var data = ParseDynamicData(inputData.Data.ToString());
-
-            var id = new ShapeId();
-            shapeService.Add(id, Enumeration.FromDisplayName<ShapeType>(inputData.Type), data);
-            var newlyCreatedShape = shapeService.Get(id);
-
-            return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
-        }
-        
         [HttpPost("line")]
         public ActionResult CreateLine([FromBody] CreateLineInputModel inputModel)
         {
             var id = shapeService.AddLine(inputModel.Length);
             var newlyCreatedShape = shapeService.Get<Line>(id);
-            return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
+            return CreatedAtAction(nameof(GetLine), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
         }
         
         [HttpPost("circle")]
@@ -127,7 +95,7 @@ namespace Shapes.Api.Controllers.Shapes
         {
             var id = shapeService.AddCircle(inputModel.Radius);
             var newlyCreatedShape = shapeService.Get<Circle>(id);
-            return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
+            return CreatedAtAction(nameof(GetCircle), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
         }
         
         [HttpPost("square")]
@@ -135,7 +103,7 @@ namespace Shapes.Api.Controllers.Shapes
         {
             var id = shapeService.AddSquare(inputModel.Side);
             var newlyCreatedShape = shapeService.Get<Square>(id);
-            return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
+            return CreatedAtAction(nameof(GetSquare), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
         }
         
         [HttpPost("rectangle")]
@@ -143,29 +111,13 @@ namespace Shapes.Api.Controllers.Shapes
         {
             var id = shapeService.AddRectangle(inputModel.Length, inputModel.Width);
             var newlyCreatedShape = shapeService.Get<Rectangle>(id);
-            return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
+            return CreatedAtAction(nameof(GetRectangle), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
         }
         #endregion
 
 
 
         #region Update Shape
-        [Obsolete("Use individual endpoints for each shape")]
-        [HttpPut("{id:Guid}")]
-        public ActionResult<ShapeViewModel> Put(Guid id, [FromBody] CreateShapeInputData inputData)
-        {
-            var shape = shapeService.Get(new ShapeId(id));
-            if (shape == null)
-                return NotFound();
-
-            var data = ParseDynamicData(inputData.Data.ToString());
-
-            shapeService.Update(shape, data);
-            var updatedShape = shapeService.Get(new ShapeId(id));
-
-            return Ok(ShapeViewModelFactory.CreateFrom(updatedShape));
-        }
-        
         [HttpPut("line/{id:Guid}")]
         public ActionResult<ShapeViewModel> UpdateLine(Guid id, [FromBody] CreateLineInputModel inputModel)
         {

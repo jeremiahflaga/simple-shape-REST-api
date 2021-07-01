@@ -12,14 +12,6 @@ namespace Shapes.Api.Controllers.Shapes
         public string Id { get; set; }
     }
 
-    [Obsolete("Use individual action method for each shape")]
-    public class ShapeViewModel_OLD
-    {
-        public string Id { get; set; }
-        public string Type { get; set; }
-        public dynamic Data { get; set; } = new ExpandoObject();
-    }
-
     //public class ShapeViewModel : DynamicObject
     //{
     //    public string Id { get; set; }

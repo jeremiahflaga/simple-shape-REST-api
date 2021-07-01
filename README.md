@@ -1,34 +1,10 @@
 # Simple Shape REST API
 
 
-**NOTE:** My solution might look more complex than it should be because I want to show that I can do an architecture which follows Clean Architecture ideas. I can make this implementation simpler if I need to. To make it simpler, I could have used only one model being passed from the Controllers to the Services, to the Repositories.
+**NOTE:** My solution might look more complex than it should be because I want to show that I can do an architecture which follows Clean Architecture ideas. 
 
-Also, I'm not sure if my design for the shapes is correct because I do not know how this API is going to be used. The requirements statement is too short and it does not say how the API will be used by the client.
+I can make this implementation simpler if I need to. To make it simpler, I could have used only one model being passed from the Controllers to the Services, to the Repositories. But an implementation like that will make things harder to manage in the long run.
 
-Also, I think this kind of app better suits the use of languages that are dynamically typed, such as JavaScript oor Python or Ruby.
-
-## Request payload for adding (POST) or updating (PUT) Shapes
-
-``` JSON
-{
-  "Type": "circle",
-  "Data": {
-    "Radius": 123
-  }
-}
-
-```
-
-``` JSON
-{
-  "Type": "rectangle",
-  "Data": {
-    "Length": 111,
-    "Width": 222
-  }
-}
-
-```
 
 -----
 

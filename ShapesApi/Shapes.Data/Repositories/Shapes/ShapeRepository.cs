@@ -32,15 +32,6 @@ namespace Shapes.Data.Repositories
             shapesDictionary.TryAdd(shape.Id.Value, ShapeDataModelFactory.CreateFrom(shape));
         }
 
-        [Obsolete("Use Get<T> instead")]
-        public Shape Get(ShapeId id)
-        {
-            if (shapesDictionary.ContainsKey(id.Value))
-                return shapesDictionary[id.Value].ConvertToShapeDomainModel();
-
-            return null;
-        }
-
         public T Get<T>(ShapeId id) where T : Shape
         {
             if (shapesDictionary.ContainsKey(id.Value)) 
@@ -55,7 +46,7 @@ namespace Shapes.Data.Repositories
         public IEnumerable<Shape> GetAll()
         {
             return from dataModel in shapesDictionary.Values 
-                   select dataModel.ConvertToShapeDomainModel();
+                   select ShapeFactory.CreateFrom<Shape>(dataModel);
         }
 
         public void Update(Shape shape)
