@@ -32,10 +32,22 @@ namespace Shapes.Data.Repositories
             shapesDictionary.TryAdd(shape.Id.Value, ShapeDataModelFactory.CreateFrom(shape));
         }
 
+        [Obsolete("Use Get<T> instead")]
         public Shape Get(ShapeId id)
         {
             if (shapesDictionary.ContainsKey(id.Value))
                 return shapesDictionary[id.Value].ConvertToShapeDomainModel();
+
+            return null;
+        }
+
+        public T Get<T>(ShapeId id) where T : Shape
+        {
+            if (shapesDictionary.ContainsKey(id.Value)) 
+            {
+                var shape = shapesDictionary[id.Value];
+                return ShapeFactory.CreateFrom<T>(shape);
+            }
 
             return null;
         }

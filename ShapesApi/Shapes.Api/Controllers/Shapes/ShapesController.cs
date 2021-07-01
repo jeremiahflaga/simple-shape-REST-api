@@ -28,13 +28,22 @@ namespace Shapes.Api.Controllers.Shapes
         }
 
         [HttpGet]
-        public IEnumerable<ShapeViewModel> Get()
+        public IEnumerable<ShapeViewModel_OLD> GetAll_OLD()
+        {
+            var shapes = from shape in shapeService.GetAll()
+                         select ShapeViewModelFactory.Create_OLD_From(shape);
+            return shapes;
+        }
+
+        [HttpGet("new")]
+        public IEnumerable<ShapeViewModel> GetAll()
         {
             var shapes = from shape in shapeService.GetAll()
                          select ShapeViewModelFactory.CreateFrom(shape);
             return shapes;
         }
 
+        [Obsolete("Use individual action method for each shape")]
         [HttpGet("{id:Guid}")]
         public ActionResult<ShapeViewModel> Get(Guid id)
         {
@@ -43,6 +52,46 @@ namespace Shapes.Api.Controllers.Shapes
                 return NotFound();
 
             return Ok(ShapeViewModelFactory.CreateFrom(shape));
+        }
+
+        [HttpGet("line/{id:Guid}")]
+        public ActionResult<LineViewModel> GetLine(Guid id)
+        {
+            var line = shapeService.Get<Line>(new ShapeId(id));
+            if (line == null)
+                return NotFound();
+
+            return Ok(LineViewModel.CreateFrom(line));
+        }
+        
+        [HttpGet("circle/{id:Guid}")]
+        public ActionResult<CircleViewModel> GetCircle(Guid id)
+        {
+            var circle = shapeService.Get<Circle>(new ShapeId(id));
+            if (circle == null)
+                return NotFound();
+
+            return Ok(CircleViewModel.CreateFrom(circle));
+        }
+        
+        [HttpGet("square/{id:Guid}")]
+        public ActionResult<SquareViewModel> GetSquare(Guid id)
+        {
+            var square = shapeService.Get<Square>(new ShapeId(id));
+            if (square == null)
+                return NotFound();
+
+            return Ok(SquareViewModel.CreateFrom(square));
+        }
+        
+        [HttpGet("rectangle/{id:Guid}")]
+        public ActionResult<RectangleViewModel> GetRectangle(Guid id)
+        {
+            var rectangle = shapeService.Get<Rectangle>(new ShapeId(id));
+            if (rectangle == null)
+                return NotFound();
+
+            return Ok(RectangleViewModel.CreateFrom(rectangle));
         }
 
         [HttpPost]

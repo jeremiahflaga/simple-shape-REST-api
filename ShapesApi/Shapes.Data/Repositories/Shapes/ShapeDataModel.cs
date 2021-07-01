@@ -17,6 +17,7 @@ namespace Shapes.Data.Repositories
         internal double Side { get; set; } // for square
         internal double Width { get; set; } // for rectangle
 
+        [Obsolete("Use ShapeFactory.CreateFrom<T> instead")]
         internal Shape ConvertToShapeDomainModel()
         {
             if (Type == ShapeType.Line.Name)

@@ -23,9 +23,15 @@ namespace Shapes.Domain.Services
             shapeRepository.Add(ShapeFactory.CreateNew(id, type, data));
         }        
 
+        [Obsolete("Use Get<T> intead")]
         public Shape Get(ShapeId id)
         {
             return shapeRepository.Get(id);
+        }
+        
+        public T Get<T>(ShapeId id) where T : Shape
+        {
+            return shapeRepository.Get<T>(id);
         }
 
         public IEnumerable<Shape> GetAll() 

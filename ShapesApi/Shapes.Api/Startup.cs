@@ -34,9 +34,10 @@ namespace Shapes.Api
             services.AddScoped<IShapeRepository, ShapeRepository>();
 
             services.AddControllers()
-                    .AddJsonOptions(options => {
-                        options.JsonSerializerOptions.PropertyNamingPolicy = null; // pascal case
-                     });
+                    .AddNewtonsoftJson();
+                    //.AddJsonOptions(options => {
+                    //    options.JsonSerializerOptions.PropertyNamingPolicy = null; // pascal case
+                    // });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShapeApi", Version = "v1" });
