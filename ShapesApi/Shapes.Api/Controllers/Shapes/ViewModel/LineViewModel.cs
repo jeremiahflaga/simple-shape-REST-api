@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Api.Controllers.Shapes
 {
-    public class LineViewModel : ShapeViewModel
+    public sealed class LineViewModel : ShapeViewModel
     {
         public string Type { get; set; }
         public double Length { get; set; }

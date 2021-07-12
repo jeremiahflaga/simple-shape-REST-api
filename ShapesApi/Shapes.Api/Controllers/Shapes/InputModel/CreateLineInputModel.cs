@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Api.Controllers.Shapes
 {
-    public class CreateLineInputModel
+    public sealed class CreateLineInputModel
     {
         public double Length { get; set; }
     }

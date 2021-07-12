@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Api.Controllers.Shapes
 {
-    public class CreateSquareInputModel
+    public sealed class CreateSquareInputModel
     {
         public double Side { get; set; }
     }

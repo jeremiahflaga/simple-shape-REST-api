@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Data.Repositories
 {
-    internal sealed class ShapeDataModelFactory
+    internal static class ShapeDataModelFactory
     {
         internal static ShapeDataModel CreateFrom(Shape shape)
         {

@@ -30,7 +30,6 @@ namespace Shapes.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ShapeService>();
-
             services.AddScoped<IShapeRepository, ShapeRepository>();
 
             services.AddControllers()

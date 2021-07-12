@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Api.Controllers.Shapes
 {
-    public class ShapeViewModelFactory
+    public static class ShapeViewModelFactory
     {
         public static ShapeViewModel CreateFrom(Shape shape) 
         {

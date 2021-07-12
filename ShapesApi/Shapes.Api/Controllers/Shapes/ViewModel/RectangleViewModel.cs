@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Api.Controllers.Shapes
 {
-    public class RectangleViewModel : ShapeViewModel
+    public sealed class RectangleViewModel : ShapeViewModel
     {
         public string Type { get; set; }
         public double Length { get; set; }

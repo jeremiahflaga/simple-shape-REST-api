@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Api.Controllers.Shapes
 {
-    public class CircleViewModel : ShapeViewModel
+    public sealed class CircleViewModel : ShapeViewModel
     {
         public string Type { get; set; }
         public double Radius { get; set; }

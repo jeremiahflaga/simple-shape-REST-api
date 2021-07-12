@@ -10,7 +10,7 @@ using Shapes.Domain.Model.Shapes;
 
 namespace Shapes.Data.Repositories
 {
-    internal class ShapeFactory
+    internal static class ShapeFactory
     {
         internal static T CreateFrom<T>(ShapeDataModel dataModel) where T : Shape
         {

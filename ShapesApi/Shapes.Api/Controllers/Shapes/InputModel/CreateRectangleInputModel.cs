@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Api.Controllers.Shapes
 {
-    public class CreateRectangleInputModel
+    public sealed class CreateRectangleInputModel
     {
         public double Length { get; set; }
         public double Width { get; set; }
