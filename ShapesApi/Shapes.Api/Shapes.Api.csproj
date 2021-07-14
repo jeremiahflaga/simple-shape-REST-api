@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shapes.Application\Shapes.Application.csproj" />
     <ProjectReference Include="..\Shapes.Data\Shapes.Data.csproj" />
     <ProjectReference Include="..\Shapes.Domain\Shapes.Domain.csproj" />
   </ItemGroup>

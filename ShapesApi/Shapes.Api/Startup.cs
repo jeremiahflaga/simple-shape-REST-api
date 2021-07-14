@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Shapes.Data.Repositories;
 using Shapes.Domain.Interfaces;
-using Shapes.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,14 +28,17 @@ namespace Shapes.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ShapeService>();
             services.AddScoped<IShapeRepository, ShapeRepository>();
+            services.AddScoped<Application.UseCases.AddShape.AddShape>();
+            services.AddScoped<Application.UseCases.GetAllShapes.GetAllShapes>();
+            services.AddScoped<Application.UseCases.GetShape.GetShape>();
+            services.AddScoped<Application.UseCases.UpdateShape.UpdateShape>();
 
             services.AddControllers()
+                    // using Newtonsoft.Json instead of the built-in System.Text.Json, because System.Text.Json does not serialize
+                    // the properties from the child classes of the ViewModel. For example, the child classes of ShapeViewModel in ShapesController.GetAll()
                     .AddNewtonsoftJson();
-                    //.AddJsonOptions(options => {
-                    //    options.JsonSerializerOptions.PropertyNamingPolicy = null; // pascal case
-                    // });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShapeApi", Version = "v1" });

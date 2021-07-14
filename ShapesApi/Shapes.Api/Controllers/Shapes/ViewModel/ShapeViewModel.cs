@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shapes.Api.Controllers.Shapes
 {
-    public class ShapeViewModel 
+    public class ShapeViewModel
     {
         public string Id { get; set; }
     }

@@ -63,5 +63,40 @@ namespace Shapes.Api.Controllers.Shapes
 
             return new ShapeViewModel();
         }
+
+        
+        //public static ShapeViewModelDynamic CreateDynamicFrom(Shape shape) 
+        //{
+        //    dynamic vm = new ShapeViewModelDynamic();         
+        //    vm.Id = shape.Id.Value.ToString();
+        //    vm.Type = shape.Type.Name.ToLower();
+        //    vm.Area = shape.ComputeArea();
+        //    vm.Perimeter = shape.ComputePerimeter();
+            
+        //    if (shape.GetType() == typeof(Line))
+        //    {
+        //        var line = (Line)shape;
+        //        vm.Length = line.Length;
+        //    }
+        //    else if (shape.GetType() == typeof(Circle))
+        //    {
+        //        var circle = (Circle)shape;
+        //        vm.Radius = circle.Radius;
+        //        vm.Circumference = circle.ComputeCircumference();
+        //    }            
+        //    else if (shape.GetType() == typeof(Square))
+        //    {
+        //        var square = (Square)shape;
+        //        vm.Side = square.Side;
+        //    }                 
+        //    else if (shape.GetType() == typeof(Rectangle))
+        //    {
+        //        var rectangle = (Rectangle)shape;
+        //        vm.Length = rectangle.Length;
+        //        vm.Width = rectangle.Width;
+        //    }
+            
+        //    return vm;
+        //}
     }
 }

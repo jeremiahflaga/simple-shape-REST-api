@@ -43,6 +43,11 @@ namespace Shapes.Data.Repositories
             return null;
         }
 
+        public Shape Get(ShapeId id)
+        {
+            return Get<Shape>(id);
+        }
+
         public IEnumerable<Shape> GetAll()
         {
             return from dataModel in shapesDictionary.Values 

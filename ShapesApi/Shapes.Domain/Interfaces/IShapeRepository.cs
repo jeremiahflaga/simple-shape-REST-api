@@ -12,6 +12,7 @@ namespace Shapes.Domain.Interfaces
     {
         void Add(Shape shape);
         T Get<T>(ShapeId id) where T : Shape;
+        Shape Get(ShapeId id);
         IEnumerable<Shape> GetAll();
         void Update(Shape shape);
     }
