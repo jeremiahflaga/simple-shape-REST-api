@@ -18,12 +18,11 @@ namespace Shapes.Application.UseCases.AddShape
             this.shapeRepository = shapeRepository;
         }
 
-        public ShapeId Execute(AddShapeRequest request)
+        public void Execute(AddShapeRequest request)
         {
-            var id = new ShapeId();
+            var id = new ShapeId(request.NewId);
             var type = Enumeration.FromDisplayName<ShapeType>(request.Type);
             shapeRepository.Add(ShapeFactory.Create(id, type, request));
-            return id;
         }
     }
 }

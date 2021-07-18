@@ -55,17 +55,18 @@ namespace Shapes.Api.Controllers.Shapes
         public ActionResult Create([FromBody] dynamic inputModel)
         {
             // TODO: add validation for inputModel here then return 400 Bad Request if invalid
-
-            var id = addShapeUseCase.Execute(new AddShapeRequest 
+            var id = Guid.NewGuid();
+            addShapeUseCase.Execute(new AddShapeRequest 
             {
+                NewId = id,
                 Type = inputModel.type,
                 Length = inputModel.length,
                 Radius = inputModel.radius,
                 Side = inputModel.side,
                 Width = inputModel.width
             });
-            var newlyCreatedShape = getShape.Execute(id.Value);
-            return CreatedAtAction(nameof(Get), new { id = id.Value }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
+            var newlyCreatedShape = getShape.Execute(id);
+            return CreatedAtAction(nameof(Get), new { id }, ShapeViewModelFactory.CreateFrom(newlyCreatedShape));
         }
         
         [HttpPut("{id:Guid}")]
